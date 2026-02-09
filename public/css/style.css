@@ -1,0 +1,634 @@
+/* Definição de Cores */
+:root {
+    --primary-color: #ff8c00; /* Laranja Vívido (Para botões e títulos de destaque) */
+    --secondary-color: #000000; /* Preto (Para texto principal e fundo) */
+    --text-light: #ffffff; /* Branco (Para texto sobre fundo escuro) */
+    --background-light: #ffffff; /* Branco (Fundo das seções) */
+    --background-dark: #0f172a; /* Preto Suave (Fundo do Cabeçalho/Rodapé) */
+}
+
+/* Reset Básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    color: var(--secondary-color);
+    background-color: #f4f4f4; /* Fundo geral levemente cinza */
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+/* 1. Cabeçalho */
+header {
+    background: var(--background-dark); /* Preto para o fundo */
+    color: var(--text-light); /* Branco para o texto */
+    padding: 10px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+header h1 {
+    font-size: 1.8em;
+    color: var(--primary-color); /* Logo Laranja */
+}
+
+header nav ul {
+    list-style: none;
+    display: flex;
+}
+
+header nav ul li {
+    margin-left: 20px;
+}
+
+header nav ul li a {
+    color: var(--text-light);
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+header nav ul li a:hover {
+    color: var(--primary-color);
+}
+
+/* Botão Primário */
+.btn-primary {
+  border-radius: 8px;
+  box-shadow: 0 6px 15px rgb(240, 130, 4);
+}
+
+
+.btn-primary:hover {
+    background: #e07b00; /* Laranja um pouco mais escuro */
+}
+
+/* Seções Gerais */
+section {
+    padding: 60px 0;
+    text-align: center;
+}
+
+section:nth-child(even) {
+    background-color: var(--background-light); /* Branco para alternar */
+}
+
+section h3 {
+    font-size: 2.2em;
+    margin-bottom: 25px;
+    color: var(--primary-color); /* Títulos Laranja */
+}
+
+/* --- Estilização do Carrossel de Banners (Nova Seção Hero) --- */
+
+.hero-carousel {
+    position: relative;
+    width: 100%;
+    height: 500px; /* Altura do carrossel */
+    overflow: hidden;
+    border-bottom: 5px solid var(--primary-color); /* Linha Laranja de destaque */
+}
+
+.carousel-inner {
+    display: flex;
+    width: 300%; /* 3 slides * 100% cada */
+    height: 100%;
+    transition: transform 0.8s ease-in-out;
+}
+
+.carousel-slide {
+    width: 100%; /* Cada slide ocupa 100% da largura visível */
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    display: flex; /* Para centralizar conteúdo */
+    align-items: center; /* Centraliza verticalmente */
+    justify-content: center; /* Centraliza horizontalmente */
+    text-align: center;
+    color: var(--text-light); /* Texto Branco */
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
+    position: relative; /* Para o overlay */
+}
+
+/* Overlay para garantir legibilidade do texto */
+.carousel-slide::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Overlay preto semi-transparente */
+    z-index: 1;
+}
+
+.carousel-slide .container {
+    position: relative; /* Garante que o conteúdo fique acima do overlay */
+    z-index: 2;
+    padding: 20px;
+}
+
+.carousel-slide h2 {
+    font-size: 3.5em;
+    margin-bottom: 10px;
+    color: var(--text-light);
+}
+
+.carousel-slide p {
+    font-size: 1.6em;
+    margin-bottom: 30px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Controles de Navegação (Setas) */
+.carousel-control {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.6); /* Fundo preto semi-transparente */
+    color: var(--text-light);
+    border: none;
+    padding: 15px 10px;
+    cursor: pointer;
+    font-size: 2em;
+    z-index: 100;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+.carousel-control:hover {
+    background: var(--primary-color); /* Laranja no hover */
+    color: var(--secondary-color); /* Texto preto no hover */
+}
+
+.carousel-control.prev {
+    left: 20px;
+}
+
+.carousel-control.next {
+    right: 20px;
+}
+
+/* Indicadores (Bolinhas) */
+.carousel-indicators {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 100;
+}
+
+.indicator {
+    width: 12px;
+    height: 12px;
+    background-color: rgba(255, 255, 255, 0.5); /* Branco semi-transparente */
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.indicator.active,
+.indicator:hover {
+    background-color: var(--primary-color); /* Laranja quando ativo ou hover */
+    transform: scale(1.2);
+}
+
+/* Media Queries para responsividade do carrossel */
+@media (max-width: 768px) {
+    .hero-carousel {
+        height: 400px;
+    }
+    .carousel-slide h2 {
+        font-size: 2.2em;
+    }
+    .carousel-slide p {
+        font-size: 1.2em;
+    }
+    .carousel-control {
+        padding: 10px 5px;
+        font-size: 1.5em;
+    }
+}
+/* Correção da Proporção da Imagem na Seção Quem Somos */
+
+.sobre-imagem {
+    flex: 1;
+    max-width: 450px; 
+    /* Adicionamos uma altura fixa ou máxima para o container */
+    height: 450px; /* <--- Altura sugerida, ajuste se precisar */
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.sobre-imagem img {
+    width: 100%;
+    height: 100%; /* Faz a imagem preencher a altura do container */
+    
+    /* ESSA É A REGRA CHAVE: Garante que a imagem preencha o container sem distorcer, cortando o excesso. */
+    object-fit: cover; 
+    
+    display: block;
+}
+
+/* Garante que o grid de texto e imagem se alinhe corretamente */
+.sobre-grid {
+    display: flex;
+    align-items: center; 
+    gap: 50px;
+}
+/* --- Estilização da Nova Seção Quem Somos --- */
+
+.sobre-quem-somos {
+    background-color: var(--background-light); /* Fundo Branco */
+    padding: 80px 0;
+    text-align: left;
+}
+
+.sobre-grid {
+    display: flex;
+    align-items: center; /* Alinha verticalmente */
+    gap: 50px;
+}
+
+.sobre-imagem {
+    flex: 1;
+    max-width: 450px; /* Limita o tamanho da imagem */
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.sobre-imagem img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.sobre-texto {
+    flex: 1;
+}
+
+.sobre-texto h4 {
+    color: var(--primary-color); /* Laranja para o subtítulo */
+    font-size: 1em;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin-bottom: 5px;
+}
+
+.sobre-texto h3 {
+    color: var(--secondary-color); /* Preto para o título principal */
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    text-align: left; /* Título alinhado à esquerda */
+}
+
+.sobre-texto p {
+    margin-bottom: 15px;
+    color: #444;
+}
+
+.certificacoes {
+    margin-top: 30px;
+    display: flex;
+    gap: 20px;
+}
+
+.selo-img {
+    max-width: 120px;
+    height: auto;
+}
+
+/* Responsividade para o Quem Somos */
+@media (max-width: 900px) {
+    .sobre-grid {
+        flex-direction: column; /* Pilha as colunas em telas menores */
+        text-align: center;
+    }
+
+    .sobre-texto h3 {
+        text-align: center;
+    }
+    
+    .sobre-imagem {
+        max-width: 100%;
+        margin-bottom: 30px;
+    }
+    
+    .certificacoes {
+        justify-content: center;
+    }
+}
+/* Seção Sobre */
+/* --- Estilização da Nova Seção de Serviços --- */
+
+.servicos {
+    background-color: var(--background-light); /* Fundo Branco */
+    padding: 60px 0;
+}
+
+.servicos h3 {
+    margin-bottom: 40px;
+}
+
+.servicos-grid {
+    display: grid;
+    /* 4 colunas em telas grandes, ou 2 colunas e 1 coluna em mobile */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    text-align: center;
+}
+
+.servico-card {
+    background: var(--background-light);
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    padding-bottom: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.servico-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    border-color: var(--primary-color); /* Borda Laranja no hover */
+}
+
+.card-image-wrapper {
+    width: 100%;
+    height: 180px; /* Altura fixa para as imagens */
+    overflow: hidden;
+    margin-bottom: 15px;
+}
+
+.card-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Garante que a imagem preencha o espaço sem distorcer */
+    transition: transform 0.5s ease;
+}
+
+.servico-card:hover .card-image-wrapper img {
+    transform: scale(1.05);
+}
+
+.servico-card h4 {
+    font-size: 1.4em;
+    color: var(--secondary-color);
+    margin-bottom: 10px;
+}
+
+.servico-card p {
+    color: #555;
+    padding: 0 15px;
+    margin-bottom: 20px;
+    min-height: 50px; /* Garante que todos os cards tenham altura similar de texto */
+}
+
+/* O botão btn-primary já está estilizado com a cor Laranja */
+.servico-card .btn-primary {
+    display: block;
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* --- 2. Seção de Vídeos em Bloco (Grid) --- */
+.videos {
+    padding: 60px 0;
+    background-color: #f4f4f4; /* Fundo suave */
+}
+
+.video-grid {
+    display: grid;
+    /* Adapta-se para 3 colunas, mas pode ter 1 ou 2 em telas menores */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.video-block {
+    background: var(--background-light);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    padding-bottom: 20px;
+    transition: transform 0.3s;
+}
+
+.video-block:hover {
+    transform: translateY(-5px);
+}
+
+.video-block iframe {
+    display: block;
+    width: 100%;
+    /* Altura fixa para todos os iframes */
+    height: 315px; 
+    border: none;
+    border-bottom: 3px solid var(--primary-color); /* Detalhe Laranja */
+}
+
+.video-block p {
+    padding: 15px 10px 0;
+    color: #555;
+    font-size: 0.95em;
+    min-height: 50px;
+}
+
+/* 3. Formulário (Orçamento) */
+.orcamento {
+    background-color: var(--background-dark); /* Fundo Preto */
+    color: var(--text-light); /* Texto Branco */
+}
+
+.orcamento h3 {
+    color: var(--primary-color);
+}
+
+.orcamento form {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: left;
+    background: var(--background-light); /* Fundo Branco no Form */
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(255, 140, 0, 0.3); /* Sombra Laranja suave */
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: var(--secondary-color); /* Texto Preto no label do form */
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+    color: var(--secondary-color);
+}
+
+.form-group textarea {
+    resize: vertical;
+}
+
+.orcamento .btn-primary {
+    width: 100%;
+    font-size: 1.1em;
+    padding: 12px;
+}
+
+/* Rodapé */
+/* --- Estilos do Rodapé Atualizados --- */
+
+footer {
+    background: var(--background-dark); /* Preto */
+    color: var(--text-light); /* Branco */
+    padding: 40px 0 10px; /* Mais espaço no topo */
+    border-top: 3px solid var(--primary-color);
+}
+
+.footer-grid {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    padding-bottom: 30px;
+    flex-wrap: wrap; /* Garante que as colunas quebrem em telas menores */
+}
+
+.footer-column {
+    flex: 1;
+    min-width: 200px; /* Garante que as colunas não fiquem muito estreitas */
+}
+
+.footer-column h4 {
+    color: var(--primary-color); /* Títulos Laranja */
+    margin-bottom: 15px;
+    font-size: 1.2em;
+}
+
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-column ul li {
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+.footer-column ul li a {
+    color: var(--text-light);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-column ul li a:hover {
+    color: var(--primary-color);
+}
+
+.footer-column ul li i {
+    margin-right: 8px;
+    color: var(--primary-color); /* Ícones Laranja */
+}
+
+/* Estilização dos Ícones de Redes Sociais */
+.social-icons {
+    display: flex;
+    gap: 15px;
+    justify-content: flex-start; /* Alinha à esquerda */
+}
+
+.social-icons a {
+    color: var(--secondary-color); /* Ícones Pretos */
+    background: var(--text-light); /* Fundo Branco para destaque */
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 40px;
+    font-size: 1.2em;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.social-icons a:hover {
+    background-color: var(--primary-color); /* Fundo Laranja no hover */
+    color: var(--text-light); /* Ícone Branco no hover */
+    transform: translateY(-3px);
+}
+
+.footer-bottom {
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 15px;
+    margin-top: 10px;
+}
+
+/* Ajuste de responsividade para o rodapé */
+@media (max-width: 768px) {
+    .footer-grid {
+        flex-direction: column;
+        text-align: center;
+    }
+    .footer-column {
+        text-align: center;
+        min-width: 100%;
+        margin-bottom: 20px;
+    }
+    .footer-column ul li {
+        text-align: center;
+    }
+    .social-icons {
+        justify-content: center; /* Centraliza ícones em mobile */
+    }
+}
+/* 4. Ícone Flutuante do WhatsApp */
+.whatsapp-float {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 40px;
+    right: 40px;
+    background-color: #25d366; /* Verde do WhatsApp no hover */
+    color: var(--secondary-color); /* Preto: Ícone */
+    border-radius: 50px;
+    text-align: center;
+    font-size: 30px;
+    line-height: 60px;
+    box-shadow: 2px 2px 3px var(--secondary-color);
+    z-index: 1000;
+    transition: transform 0.3s ease, background-color 0.3s;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1);
+    background-color: #25d366; /* Verde do WhatsApp no hover */
+    color: var(--text-light); /* Branco no hover */
+}
